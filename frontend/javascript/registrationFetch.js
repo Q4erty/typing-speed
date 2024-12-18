@@ -13,7 +13,8 @@ document.getElementById('registrationForm').addEventListener('submit', event => 
 	})
 	.then(res => {
 		if (res.ok){
-			alert("You registered successfully!")
+			alert("You registered successfully! Now you need to login")
+			window.location.href = '/frontend/html/login.html'
 			return res.json()
 		} else {
 			alert("Something went wrong.")

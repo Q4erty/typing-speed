@@ -14,6 +14,7 @@ document.getElementById('loginForm').addEventListener('submit', event => {
 	.then(res => {
 		if (res.ok){
 			alert("You logined successfully!")
+			window.location.href = '/frontend/html/index.html'
 			return res.json()
 		} else {
 			alert("Something went wrong.")

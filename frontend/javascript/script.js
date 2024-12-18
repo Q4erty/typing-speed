@@ -158,6 +158,7 @@ document.getElementById('game').addEventListener('keydown', event => {
 			removeClass(currentWord.lastChild, 'correct')
 			removeClass(currentWord.lastChild, 'incorrect')
 		}
+		
 	}
 
 	if(currentWord.getBoundingClientRect().top > 220){
@@ -211,7 +212,6 @@ function stopGame(){
 
 
 	addResults(seconds, allWords.length, allCharacters.length, mistakes, accuracy, wpm, csp)
-	document.getElementById('stopButton').click();
 
 	isGameStarted = false;
 	words.innerHTML = '';

@@ -2,16 +2,7 @@ import User from '../models/User.js'
 
 class resultsController {
 	async addResults(req, res) {
-		const {
-			duration,
-			number_of_words,
-			number_of_characters,
-			mistakes,
-			accuracy,
-			wpm,
-			csp,
-			date,
-		} = req.body
+		const { duration, number_of_words, number_of_characters, mistakes, accuracy, wpm, csp, date } = req.body;
 		const userId = req.user.id
 
 		try {
