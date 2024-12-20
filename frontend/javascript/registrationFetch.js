@@ -15,7 +15,6 @@ document.getElementById('registrationForm').addEventListener('submit', event => 
 		if (res.ok){
 			alert("You registered successfully! Now you need to login")
 			window.location.href = '../html/login.html'
-			return res.json()
 		} else {
 			alert("Something went wrong.")
 		}
