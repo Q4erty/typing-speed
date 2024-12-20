@@ -19,15 +19,6 @@ document.getElementById('registrationForm').addEventListener('submit', event => 
 			alert("Something went wrong.")
 		}
 	})
-	.then(data => {
-		if (data.token) {
-			localStorage.setItem('token', data.token);
-			console.log('User is logged in');
-			window.location.href = '../html/login.html'
-		} else {
-			console.error('Login failed');
-		}
-	})
 	.catch(error => {
 		console.error(error)
 	})
