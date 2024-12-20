@@ -14,7 +14,6 @@ document.getElementById('loginForm').addEventListener('submit', event => {
 	.then(res => {
 		if (res.ok){
 			alert("You logined successfully!")
-			window.location.href = '/frontend/html/index.html'
 			return res.json()
 		} else {
 			alert("Something went wrong.")
@@ -24,6 +23,7 @@ document.getElementById('loginForm').addEventListener('submit', event => {
 		if (data.token) {
 			localStorage.setItem('token', data.token);
 			console.log('User is logged in');
+			window.location.href = '../html/index.html'
 		} else {
 			console.error('Login failed');
 		}

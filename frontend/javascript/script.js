@@ -161,7 +161,7 @@ document.getElementById('game').addEventListener('keydown', event => {
 		
 	}
 
-	if(currentWord.getBoundingClientRect().top > 220){
+	if(currentWord.getBoundingClientRect().top > 320){
 		const words = document.getElementById('words');
 		const margin = parseFloat(words.style.marginTop || '0px');
 		words.style.marginTop = (margin - 36.5) + 'px';

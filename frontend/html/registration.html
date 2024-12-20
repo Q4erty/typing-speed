@@ -5,21 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/form.css">
 </head>
 <body>
-    <h2>Registration</h2>
-    <form id="registrationForm">
-        <label for="registrationUsername">Username:</label>
-        <input type="text" id="registrationUsername" placeholder="Enter your username" required>
-        <br><br>
-        <label for="registrationPassword">Password:</label>
-        <input type="password" id="registrationPassword" placeholder="Enter your password" required>
-        <br><br>
-        <button type="submit">Register</button>
-    </form>
-    <br>
-    <a href="login.html">Already have an account? Login here</a>
-
+    <main class='container' id='main'>
+        <form class='form-control text-white' id="registrationForm">
+            <h2>REGISTRATION</h2>
+            <label class='form-label' for="registrationUsername">Username:</label>
+            <input type="text" class='form-control' id="registrationUsername" placeholder="Enter your username" required>
+            <br><br>
+            <label class='form-label' for="registrationPassword">Password:</label>
+            <input type="password" class='form-control' id="registrationPassword" placeholder="Enter your password" required>
+            <br><br>
+            <button class='btn btn-outline-danger' type="submit">Register</button>
+            <div class='container' id='link'><a class='link-light link-opacity-50-hover' href="login.html">Already have an account? Login here</a> </div>
+        </form>
+    </main>
+    
     <script src="../javascript/registrationFetch.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
