@@ -1,0 +1,39 @@
+body{
+	background-color: black;
+	color: white;
+	background-image: url('../img/login.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+main{
+	display: grid;
+	justify-items: center;
+	height: 400px;    
+	margin-top: 160px;
+}
+
+.form-control{
+	width: 100%;
+	max-width: 600px;
+	background-color: rgb(2, 0, 26);
+	border: 0pc;
+}
+
+
+.btn{
+	width: 100%;
+	padding: 12px;
+}
+
+a.link {
+	font-size: 14px;
+	margin-left: 20px;
+}
+
+h2{
+	font-size: 50px;
+	font-weight: 800;
+	font-family: Georgia, serif;
+	color: rgb(2, 0, 26);
+}

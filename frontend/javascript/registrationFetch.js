@@ -4,7 +4,7 @@ document.getElementById('registrationForm').addEventListener('submit', event => 
 	const username = document.getElementById('registrationUsername').value;
   const password = document.getElementById('registrationPassword').value;
 
-	fetch('http://localhost:3000/auth/registration', {
+	fetch('https://speed-typing-backend.onrender.com/auth/registration', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'

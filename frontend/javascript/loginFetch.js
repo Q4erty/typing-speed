@@ -4,7 +4,7 @@ document.getElementById('loginForm').addEventListener('submit', event => {
 	const username = document.getElementById('loginUsername').value;
   const password = document.getElementById('loginPassword').value;
 
-	fetch('http://localhost:3000/auth/login', {
+	fetch('https://speed-typing-backend.onrender.com/auth/login', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
