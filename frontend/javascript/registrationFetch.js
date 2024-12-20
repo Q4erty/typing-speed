@@ -14,7 +14,6 @@ document.getElementById('registrationForm').addEventListener('submit', event => 
 	.then(res => {
 		if (res.ok){
 			alert("You registered successfully! Now you need to login")
-			window.location.href = '../html/login.html'
 			return res.json()
 		} else {
 			alert("Something went wrong.")
@@ -24,6 +23,7 @@ document.getElementById('registrationForm').addEventListener('submit', event => 
 		if (data.token) {
 			localStorage.setItem('token', data.token);
 			console.log('User is logged in');
+			window.location.href = '../html/login.html'
 		} else {
 			console.error('Login failed');
 		}
