@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 import authRouter from './routers/authRouter.js';
 import resultsRouter from './routers/resultsRouter.js'
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 const PORT = process.env.PORT || 3000
 
@@ -15,7 +18,7 @@ app.use('/profile', resultsRouter)
 
 async function main() {
 	try {
-    await mongoose.connect('mongodb+srv://nurtas:nurtas05@final-project.sj4v4.mongodb.net/final-project?retryWrites=true&w=majority&appName=final-project');
+    await mongoose.connect(process.env.DATABASE_URL);
     
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
