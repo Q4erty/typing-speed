@@ -76,3 +76,21 @@ main{
 .modal-body{
 	display: grid;
 }
+
+footer{
+	margin-top: 210px;
+	background-color:  rgb(1, 0, 11);
+	color: white;
+	font-family: 'Times New Roman', Times, serif;
+}
+
+#textAboveCopyright{
+	display: grid;
+	justify-content: center;
+	margin-top: 10px;
+}
+
+#copyright{
+	margin-top: 30px;
+	font-size: 10px;
+}
