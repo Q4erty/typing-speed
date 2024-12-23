@@ -5,9 +5,9 @@ dotenv.config();
 
 export default function(req, res, next){
 
-	// for checking refight requests from cors
+	// for checking requests from cors
 	if(req.method === "OPTIONS"){
-		next();
+		return next();
 	};
 
 	try {

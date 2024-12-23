@@ -4,6 +4,12 @@ export async function getResults() {
 	const loadingScreen = document.getElementById('loadingScreen');
 	let result = [];
 
+	if (!token) {
+		console.error('No token');
+		window.location.href = '../../html/login.html';
+		return;
+	}
+
 	loadingScreen.style.display = 'flex';
 
 	try {
@@ -15,7 +21,7 @@ export async function getResults() {
 		});
 
 		if (response.status === 401) {
-			window.location.href = '/frontend/html/login.html';
+			window.location.href = '../../html/login.html';
 			return;
 		};
 
