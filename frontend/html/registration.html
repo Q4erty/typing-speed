@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="../css/form.css">
 </head>
 <body>
+    <div id='loadingScreen'>
+        Loading...
+    </div>
+    
     <main class='container' id='main'>
         <form class='form-control text-white' id="registrationForm">
             <div id='h2'><h2>REGISTRATION</h2></div>
@@ -16,6 +20,9 @@
             <br><br>
             <label class='form-label' for="registrationPassword">Password:</label>
             <input type="password" class='form-control' id="registrationPassword" placeholder="Enter your password" required>
+            <span id='caution'>
+                <strong>Attention:</strong> your username and password should not contain spaces at the beginning or end, and the password must be longer than 4 characters.
+            </span>
             <br><br>
             <button class='btn btn-outline-danger' type="submit">Register</button>
             <div class='container' id='link'>
@@ -24,7 +31,8 @@
         </form>
     </main>
     
-    <script src="../javascript/registrationFetch.js"></script>
+    <script src="../javascript/fetch/registrationFetch.js"></script>
+    <script src='../javascript/registrationChecker.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

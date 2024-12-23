@@ -73,6 +73,25 @@ main{
 	display: block;
 }
 
+#startWord{
+	height: 100%;
+	width: 100%;
+	color: rgb(255, 255, 255);
+	font-size: 30px;
+	cursor: default;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#startWord:hover{
+	cursor: pointer;
+}
+
+#game:hover{
+	cursor: pointer;
+}
+
 .modal-body{
 	display: grid;
 }

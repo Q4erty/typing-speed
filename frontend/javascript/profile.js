@@ -1,17 +1,15 @@
-import { getResults } from './getResultsFetch.js'
+import { getResults } from './fetch/getResultsFetch.js';
 
 async function watchingResults() {
-	const data = await getResults()
-	const place = document.getElementById('placeForResults')
-	let counter = 0
+	const data = await getResults();
+	const place = document.getElementById('placeForResults');
 
 	data.forEach(element => {
-		counter++
-
 		const row = document.createElement('tr');
 
 		const idTd = document.createElement('td');
-		idTd.textContent = counter;
+		const date = new Date(element.date);
+		idTd.textContent = date.toLocaleString('ru-RU');
 		row.appendChild(idTd);
 
 		const durationTd = document.createElement('td');
@@ -44,7 +42,6 @@ async function watchingResults() {
 
 		place.prepend(row);
 	});
-	console.log(data)
-}
+};
 
-document.addEventListener('DOMContentLoaded', watchingResults)
+document.addEventListener('DOMContentLoaded', watchingResults);

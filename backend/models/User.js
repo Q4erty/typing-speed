@@ -5,6 +5,6 @@ const User = new Schema({
 	username: {type: String, unique: true, required: true},
 	password: {type: String, required: true},
 	gameResults: [GameResults]
-})
+});
 
-export default model('User', User)
+export default model('User', User);

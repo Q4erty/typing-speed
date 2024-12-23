@@ -1,0 +1,36 @@
+body{
+	background-color: black;
+	background-image: url('../img/tutorial.jpg');
+	background-attachment: fixed;
+}
+
+.navbar{
+	background-color: rgb(34, 0, 29);
+}
+
+
+.accordion{
+	margin-top: 50px;
+}
+
+.accordion-button, .accordion-header{
+	background-color:  rgba(34, 0, 29, 0.719);
+}
+
+footer{
+	margin-top: 110px;
+	background-color:  rgb(34, 0, 29);
+	color: white;
+	font-family: 'Times New Roman', Times, serif;
+}
+
+#textAboveCopyright{
+	display: grid;
+	justify-content: center;
+	margin-top: 10px;
+}
+
+#copyright{
+	margin-top: 30px;
+	font-size: 10px;
+}

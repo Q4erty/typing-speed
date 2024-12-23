@@ -9,6 +9,6 @@ const GameResults = new Schema({
 	wpm: {type: Number},
 	csp: {type: Number},
   date: { type: Date, default: Date.now }
-})
+});
 
-export default GameResults
+export default GameResults;

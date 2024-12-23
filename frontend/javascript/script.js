@@ -1,6 +1,6 @@
-import { addResults } from './addResultsFetch.js'
+import { addResults } from './fetch/addResultsFetch.js';
 
-const text = 'the quick brown fox jumps over the lazy dog near the river bank while birds fly high above'.split(" ");
+const text = 'Apple banana chair dog elephant flower Green house island juice king lamp mountain needle orange Pigeon queen rabbit Star tree aloha bird calf dogs 08324 eagle funny glow horizon igloo jump kingdom lion Moon nest oak pine quiet rose sun tide umbrella velvet wind Xylophone yellow zebra ace bright cup drum echo fish grass hop ink Joker kick luck map Night owl path Quest rain sleep turtle vine wall xmas yard zippy art belt candy dirt earth fox grip hill ice jet kite light Mouse nap olive 5467 paint queen red snow train unit Vast wind yawn Zero apple banana cat deer Egg fox garden hope inner joy Kelp leaf mud new owl pot queen rose seed turtle up vase whale xylophone yoke zone ant bus cheese dart Earth flower gift hamster iguana jug kiwi lantern marble nut 64345 orange pet quiz Rabbit salt tail Under volcano worm extra fog 32345 glow House ice jelly Kangaroo lion milk nice Ocean plant quick rock star time umbrella vase wind exit yard zen apple Balloon cream drop easy field gnome hint igloo joke koala light moon neck odd Peak quiz road sock top unity view wizard yellow zip alarm box 0012 dance eat face give hop inch'.split(" ");
 const textLength = text.length;
 
 let seconds = 0;
@@ -9,11 +9,11 @@ let isGameStarted = false;
 
 function addClass(element, name){
   element.classList.add(name);
-}
+};
 
 function removeClass(element, name){
 	element.classList.remove(name);
-}
+};
 
 function randomWord(){
 	const randomIndx = Math.floor(Math.random() * textLength);
@@ -34,7 +34,7 @@ function printedWords(){
 	}
 
 	return counter;
-}
+};
 
 function timerFormat(seconds){
 	const minut = Math.floor(seconds / 60);
@@ -59,7 +59,7 @@ function timerFormat(seconds){
 	else{
 		return `00:${seconds}`;
 	}
-}
+};
 
 function timer(){
 	const timerDiv = document.getElementById('timeText');
@@ -70,17 +70,19 @@ function timer(){
 	time = setInterval(() => {
 		seconds++;
 		timerDiv.innerText = timerFormat(seconds);
-	}, 1000)
-}
+	}, 1000);
+};
 
 
 function newGame(){
 	if (isGameStarted) return;
 
 	document.getElementById('words').innerHTML = '';
-	for(let i = 0; i < 100; i++){
+
+	for(let i = 0; i < 500; i++){
 		document.getElementById('words').innerHTML += formatWord(randomWord());
 	}
+
 	addClass(document.querySelector('.word'), 'current');
 	addClass(document.querySelector('.letter'), 'current');
 
@@ -108,68 +110,80 @@ document.getElementById('game').addEventListener('keydown', event => {
 
 	if(isLetter){
 		if(currentLetter){
-			addClass(currentLetter, key === expected ? 'correct' : 'incorrect')
+			addClass(currentLetter, key === expected ? 'correct' : 'incorrect');
 			removeClass(currentLetter, 'current');
 			if(currentLetter.nextSibling){
-				addClass(currentLetter.nextSibling, 'current')
+				addClass(currentLetter.nextSibling, 'current');
 			};
 		}
-		else{
+		else{ // Adding wrong printed letter before space
 			const incorrectLetter = document.createElement('span');
 			incorrectLetter.innerHTML = key;
 			incorrectLetter.className = 'letter incorrect extra';
 			currentWord.appendChild(incorrectLetter);
-		}
-	}
+		};
+	};
 	if(isSpace){
 		if(expected !== ' '){
 			const lettersToInvalide = [...document.querySelectorAll('.word.current .letter:not(.correct)')];
 			lettersToInvalide.forEach(element => {
 				addClass(element, 'incorrect');
 			});
-		}
+		};
 
 		removeClass(currentWord, 'current');
 		addClass(currentWord.nextSibling, 'current');
 
 		if(currentLetter){
 			removeClass(currentLetter, 'current');
-		}
+		};
 		addClass(currentWord.nextSibling.firstChild, 'current');
-	}
+	};
 
 	if(isBackspace){
+		// After space
 		if(currentLetter && isFirstLetter){
 			removeClass(currentWord, 'current');
 			addClass(currentWord.previousSibling, 'current');
+
 			removeClass(currentLetter, 'current');
 			addClass(currentWord.previousSibling.lastChild, 'current');
-			removeClass(currentWord.previousSibling.lastChild, 'correct')
-			removeClass(currentWord.previousSibling.lastChild, 'incorrect')
-		}
+
+			removeClass(currentWord.previousSibling.lastChild, 'correct');
+			removeClass(currentWord.previousSibling.lastChild, 'incorrect');
+		};
+
+		// Default situation
 		if(currentLetter && !isFirstLetter){
 			removeClass(currentLetter, 'current');
-			addClass(currentLetter.previousSibling, 'current')
-			removeClass(currentLetter.previousSibling, 'correct')
-			removeClass(currentLetter.previousSibling, 'incorrect')
-		}
+			addClass(currentLetter.previousSibling, 'current');
+
+			removeClass(currentLetter.previousSibling, 'correct');
+			removeClass(currentLetter.previousSibling, 'incorrect');
+		};
+
+		// After last word
 		if(!currentLetter){
 			addClass(currentWord.lastChild, 'current');
-			removeClass(currentWord.lastChild, 'correct')
-			removeClass(currentWord.lastChild, 'incorrect')
-		}
-		
-	}
 
+			removeClass(currentWord.lastChild, 'correct');
+			removeClass(currentWord.lastChild, 'incorrect');
+		};
+	};
+
+	// Autoscrolling words
 	if(currentWord.getBoundingClientRect().top > 320){
 		const words = document.getElementById('words');
 		const margin = parseFloat(words.style.marginTop || '0px');
-		words.style.marginTop = (margin - 36.5) + 'px';
-	}
 
+		words.style.marginTop = (margin - 36.5) + 'px';
+	};
+
+	// Cursor
 	const nextLetter = document.querySelector('.letter.current');
 	const nextWord = document.querySelector('.word.current');
 	const cursor = document.getElementById('cursor');
+
 	if(nextLetter){
 		cursor.style.top = nextLetter.getBoundingClientRect().top + 2 + 'px';
 		cursor.style.left = nextLetter.getBoundingClientRect().left + 'px';
@@ -177,7 +191,7 @@ document.getElementById('game').addEventListener('keydown', event => {
 	else{
 		cursor.style.top = nextWord.getBoundingClientRect().top + 10 + 'px';
 		cursor.style.left = nextWord.getBoundingClientRect().right - 1 + 'px';
-	}
+	};
 });
 
 function stopGame(){
@@ -191,9 +205,10 @@ function stopGame(){
 	const allCharacters = document.querySelectorAll('.letter');
 	const allCharactersThatPrinted = mistakes + notMistakes;
 	const accuracy = Math.floor((notMistakes * 100) / allCharactersThatPrinted) || 100;
-	const wpm = (printedWordsAmount * 60 / seconds).toFixed(1);
+	const wpm = (printedWordsAmount * (60 / seconds)).toFixed(1);
 	const csp = (allCharactersThatPrinted / seconds).toFixed(1);
 
+	// Modal window
 	const durationModalText = document.getElementById('durationModalText');
 	const numberOfWordsModalText = document.getElementById('numberOfWordsModalText');
 	const numberOfCharactersModalText = document.getElementById('numberOfCharactersModalText');
@@ -202,26 +217,27 @@ function stopGame(){
 	const wpmModalText = document.getElementById('wpmModalText');
 	const cspModalText = document.getElementById('cspModalText');
 
-	durationModalText.innerText = `Duration of the game: ${seconds} seconds`
-	numberOfWordsModalText.innerText = `Number of words: ${allWords.length}`
-	numberOfCharactersModalText.innerText = `Number of characters: ${allCharacters.length}`
-	mistakesModalText.innerText = `Mistakes: ${mistakes}`
-	accuracyModalText.innerText = `Accuracy: ${accuracy}%`
-	wpmModalText.innerText = `WPM: ${wpm}`
-	cspModalText.innerText = `CSP: ${csp}`
+	durationModalText.innerText = `Duration of the game: ${seconds} seconds`;
+	numberOfWordsModalText.innerText = `Number of words: ${printedWordsAmount}`;
+	numberOfCharactersModalText.innerText = `Number of characters: ${allCharactersThatPrinted}`;
+	mistakesModalText.innerText = `Mistakes: ${mistakes}`;
+	accuracyModalText.innerText = `Accuracy: ${accuracy}%`;
+	wpmModalText.innerText = `WPM: ${wpm}`;
+	cspModalText.innerText = `CSP: ${csp}`;
 
+	// Database
+	addResults(seconds, printedWordsAmount, allCharactersThatPrinted, mistakes, accuracy, wpm, csp);
 
-	addResults(seconds, allWords.length, allCharacters.length, mistakes, accuracy, wpm, csp)
-
+	// Reset settings
 	isGameStarted = false;
 	words.innerHTML = '';
 	cursor.style.display = 'none';
 	clearInterval(time);
 	seconds = 0;
-	timeText.innerText = '00:00'
+	timeText.innerText = '00:00';
 	words.style.marginTop = 0 + 'px';
 	document.getElementById('stopButton').disabled = true;
-}
+};
 
-document.getElementById('game').addEventListener('click', newGame)
-document.getElementById('stopButton').addEventListener('click', stopGame)
+document.getElementById('game').addEventListener('click', newGame);
+document.getElementById('stopButton').addEventListener('click', stopGame);

@@ -11,12 +11,12 @@ export function addResults(duration, number_of_words, number_of_characters, mist
 	})
 	.then(res => {
 		if (res.ok){
-			alert("Your results recorded!")
+			console.log("Your results recorded!");
 		} else {
-			alert("Something went wrong.")
-		}
+			console.error("Something went wrong when recording.");
+		};
 	})
 	.catch(error => {
-		console.error(error)
-	})
-}
+		console.error(error);
+	});
+};
