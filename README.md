@@ -1,3 +1,170 @@
+# Backend Documentation
+## Project Structure Documentation
+
+This section provides an overview of the backend project structure and describes its components. The project uses Node.js, Express, MongoDB, and other technologies to implement the API.
+
+#### Project Directory Structure
+
+```
+├── .env
+├── node_modules/
+├── controllers/
+│   ├── authController.js
+│   └── resultsController.js
+├── middleware/
+│   └── authMiddleware.js
+├── models/
+│   ├── User.js
+│   └── GameResults.js
+├── routers/
+│   ├── authRouter.js
+│   └── resultsRouter.js
+├── .gitignore
+├── package.json
+├── server.js
+└── README.md
+```
+
+#### Directory Structure Description
+
+- **.env**  
+  Configuration file for storing sensitive data (e.g., secret keys, database URLs) and environment variables. These values should not be committed to version control (e.g., Git).
+
+- **node_modules/**  
+  Directory for installed project dependencies (automatically created when installing packages via npm).
+
+- **controllers/**  
+  Folder for controllers, which handle requests, perform business logic, and interact with models. In this project, there are two controllers:
+  - `authController.js`: Handles user registration and authentication.
+  - `resultsController.js`: Handles adding and retrieving game results.
+
+- **middleware/**  
+  Folder for middleware functions. This project contains one middleware:
+  - `authMiddleware.js`: Verifies the presence and validity of the JWT token for protected routes.
+
+- **models/**  
+  Folder for data models used for interacting with the database. In this project, there are two models:
+  - `User.js`: User model with fields `username`, `password`, and an array of game results.
+  - `GameResults.js`: Game result model with fields like `duration`, `number_of_words`, `accuracy`, etc.
+
+- **routers/**  
+  Folder for route handlers (routers) that define how to handle requests to specific API endpoints. This project has two routers:
+  - `authRouter.js`: Handles routes for authentication (registration, login).
+  - `resultsRouter.js`: Handles routes for working with game results (adding and retrieving).
+
+- **.gitignore**  
+  Specifies files and directories that should not be tracked by version control (e.g., `node_modules/`, `.env`).
+
+- **package.json**  
+  Defines the project’s dependencies, scripts, and metadata. This file is automatically created when the project is initialized via npm.
+
+- **server.js**  
+  The main file responsible for starting the server. It configures the Express application, connects to the database, and sets up routes.
+
+- **README.md**  
+  A Markdown file that provides documentation for the project, explaining how to set it up and use it.
+
+---
+
+### Detailed Component Descriptions
+
+#### 1. **server.js**
+
+This file is responsible for starting the Express server. It connects all the necessary routes and connects to the MongoDB database using Mongoose.
+
+- **Dependencies**:
+  - `express`: A library for building web servers.
+  - `mongoose`: A library for working with MongoDB.
+  - `dotenv`: A library for loading environment variables.
+  - `cors`: Middleware for enabling cross-origin resource sharing.
+
+- **Main Code**:
+  - Loads environment variables from `.env`.
+  - Connects to MongoDB.
+  - Starts the server on the specified port.
+  - Sets up routes for authentication and game results.
+
+#### 2. **controllers/authController.js**
+
+The controller for user authentication (registration and login).
+
+- **Registration**: 
+  - Checks that the password meets the requirements and that the username is unique.
+  - Hashes the password before saving it to the database.
+  - Creates a new user and saves it in the database.
+  - Returns a success message for registration.
+
+- **Login**:
+  - Checks if the user with the given username exists.
+  - Compares the entered password with the hashed password in the database.
+  - Generates a JWT token for user authentication.
+
+#### 3. **controllers/resultsController.js**
+
+Controller for working with game results.
+
+- **Add Results**:
+  - Uses `authMiddleware` to ensure the user is authenticated.
+  - Saves game results (such as duration, word count, and errors) to the user's document in the `gameResults` field.
+
+- **Get Results**:
+  - Uses `authMiddleware` to ensure the user is authenticated.
+  - Retrieves and returns all the game results for the authenticated user.
+
+#### 4. **middleware/authMiddleware.js**
+
+A middleware function for checking the JWT token in the request headers.
+
+- Checks if a token exists in the `Authorization` header.
+- If the token exists, it decodes it using the secret key and attaches the user data to the request object.
+- If the token is missing or invalid, it returns a 401 (Unauthorized) error.
+
+#### 5. **models/User.js**
+
+The user model that defines the structure of the user document in the database.
+
+- Fields:
+  - `username`: A unique username for the user.
+  - `password`: The hashed password.
+  - `gameResults`: An array of game result objects.
+
+#### 6. **models/GameResults.js**
+
+The model for game results.
+
+- Fields:
+  - `duration`: Duration of the game.
+  - `number_of_words`: Number of words typed.
+  - `number_of_characters`: Number of characters typed.
+  - `mistakes`: Number of mistakes made during the game.
+  - `accuracy`: Accuracy percentage.
+  - `wpm`: Words per minute.
+  - `csp`: Characters per second.
+  - `date`: The date and time the result was recorded.
+
+#### 7. **routers/authRouter.js**
+
+Router for authentication-related routes.
+
+- Routes:
+  - `/registration`: POST request for registering a new user.
+  - `/login`: POST request for user login.
+
+#### 8. **routers/resultsRouter.js**
+
+Router for working with game results.
+
+- Routes:
+  - `/addResults`: POST request for adding game results.
+  - `/getResults`: GET request for retrieving all game results.
+
+
+
+### Conclusion
+
+The project structure is organized to separate concerns into controllers, routes, models, and middleware, making the project more maintainable and scalable. Each component handles its respective part of the application, allowing for easy updates and enhancements as needed.
+
+---
 ## API Documentation
 
 ### Overview
