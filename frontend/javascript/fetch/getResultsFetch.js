@@ -6,7 +6,7 @@ export async function getResults() {
 
 	if (!token) {
 		console.error('No token');
-		window.location.href = '/typing-speed/frontend/html/registrationChecker.html';
+		window.location.href = '/typing-speed/frontend/html/login.html';
 		return;
 	}
 
@@ -21,7 +21,7 @@ export async function getResults() {
 		});
 
 		if (response.status === 401) {
-			window.location.href = '/typing-speed/frontend/html/registrationChecker.html';
+			window.location.href = '/typing-speed/frontend/html/login.html';
 			return;
 		};
 
