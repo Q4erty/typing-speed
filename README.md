@@ -19,7 +19,7 @@ This section provides an overview of the backend project structure and describes
 ├── routers/
 │   ├── authRouter.js
 │   └── resultsRouter.js
-├── .gitignore
+├── package-lock.json
 ├── package.json
 ├── server.js
 └── README.md
@@ -52,8 +52,8 @@ This section provides an overview of the backend project structure and describes
   - `authRouter.js`: Handles routes for authentication (registration, login).
   - `resultsRouter.js`: Handles routes for working with game results (adding and retrieving).
 
-- **.gitignore**  
-  Specifies files and directories that should not be tracked by version control (e.g., `node_modules/`, `.env`).
+- **package-lock.json**  
+  Honestly, I don't know what it is.
 
 - **package.json**  
   Defines the project’s dependencies, scripts, and metadata. This file is automatically created when the project is initialized via npm.
